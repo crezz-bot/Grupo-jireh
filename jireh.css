@@ -592,8 +592,8 @@ h1, h2, h3, h4, h5, h6 {
 .item-clave:hover {
     transform: translateX(5px);
 }
-
-.linea-color {
+ 
+.linea-color .productos-premium {
     position: absolute;
     left: 0;
     top: 0;
