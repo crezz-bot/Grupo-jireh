@@ -1,0 +1,356 @@
+/* Colores de la marca: Azul y Gris Industrial */
+:root {
+    --primario: #0056b3;
+    --oscuro: #2c3e50;
+    --fondo: #f4f7f6;
+}
+
+.pagina-productos {
+    background-color: var(--fondo);
+}
+
+.banner-herrajes {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imayen/trabajo-72.jpg');
+    background-size: cover;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.btn-regresar-flotante {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--primario);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.accesorio-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    border-bottom: 4px solid var(--primario);
+}
+
+.accesorio-card:hover {
+    transform: translateY(-10px);
+}
+
+.btn-cotizar-card {
+    background: #25d366; /* Color WhatsApp */
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+/* Colores de la marca: Azul y Gris Industrial */
+:root {
+    --primario: #0056b3;
+    --oscuro: #2c3e50;
+    --fondo: #f4f7f6;
+}
+
+.pagina-productos {
+    background-color: var(--fondo);
+}
+
+.banner-herrajes {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imayen/trabajo-72.jpg');
+    background-size: cover;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.btn-regresar-flotante {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--primario);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.accesorio-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    border-bottom: 4px solid var(--primario);
+}
+
+.accesorio-card:hover {
+    transform: translateY(-10px);
+}
+
+.btn-cotizar-card {
+    background: #25d366; /* Color WhatsApp */
+    color: white;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+/* Variables de color */
+:root {
+    --azul-jireh: #0056b3;
+    --azul-claro: #e3f2fd;
+    --blanco: #ffffff;
+    --oscuro: #2c3e50;
+}
+
+body {
+    /* Degradado de Blanco a Azul Claro */
+    background: linear-gradient(180deg, var(--blanco) 0%, var(--azul-claro) 100%);
+    background-attachment: fixed; /* Mantiene el fondo quieto al hacer scroll */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+/* Estilo para las tarjetas de herrajes */
+.accesorio-card {
+    background: var(--blanco);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 86, 179, 0.1);
+}
+
+.accesorio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 86, 179, 0.2);
+}
+
+/* Encabezado de la página */
+.header-productos {
+    background-color: var(--blanco);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Botón de Regresar */
+.btn-regresar-flotante {
+    position: fixed;
+    bottom: 20px; /* Movido abajo para que no estorbe */
+    left: 20px;
+    background: var(--azul-jireh);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+:root {
+    --azul-jireh: #0056b3;
+    --azul-claro: #e3f2fd;
+    --blanco: #ffffff;
+    --oscuro: #2c3e50;
+}
+
+body {
+    /* Aquí está tu degradado de blanco a azul */
+    background: linear-gradient(180deg, var(--blanco) 0%, var(--azul-claro) 100%);
+    background-attachment: fixed;
+    margin: 0;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+
+/* Limpieza de la navegación */
+.header-productos {
+    background: var(--blanco);
+    padding: 15px 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-weight: bold;
+    color: var(--azul-jireh);
+    font-size: 1.4rem;
+}
+
+.enlaces a {
+    text-decoration: none;
+    color: var(--oscuro);
+    font-weight: 500;
+}
+
+/* Espaciado del contenido */
+.contenedor-principal {
+    padding: 50px 20px;
+}
+
+.encabezado-texto {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.encabezado-texto h1 {
+    color: var(--oscuro);
+}
+
+.encabezado-texto p {
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Botón flotante */
+.btn-regresar-flotante {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--azul-jireh);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+body {
+    /* Degradado que empieza en blanco y termina en un azul más visible */
+    background: linear-gradient(180deg, #ffffff 0%, #bbdefb 100%);
+    
+    /* Esto es lo más importante: hace que el fondo no se mueva al bajar */
+    background-attachment: fixed; 
+    
+    /* Asegura que cubra toda la pantalla siempre */
+    min-height: 100vh; 
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Para que las tarjetas resalten sobre ese azul, dales un color blanco sólido */
+.accesorio-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+/* Esto obliga al texto a quedarse dentro de los márgenes de la página */
+.texto-rebelde {
+    text-align: center;
+    max-width: 90%;      /* Evita que toque los bordes físicos de la pantalla */
+    margin-left: auto;   /* Estos dos margin auto centran el bloque completo */
+    margin-right: auto;
+    display: block;      /* Asegura que se comporte como un bloque sólido */
+    overflow: hidden;    /* Corta cualquier cosa que intente salirse */
+    white-space: normal; /* Asegura que el texto baje de renglón si es muy largo */
+}
+/* Contenedor principal donde van tus tarjetas */
+#grid-accesorios {
+    display: grid; /* Para que las tarjetas se acomoden bonito */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px; /* Espacio entre tarjetas */
+    padding: 30px;
+    position: relative; /* ¡Esto es clave para separar el fondo! */
+    min-height: 500px; /* Para que se vea bien el fondo */
+}
+
+/* 🎯 AQUÍ ESTÁ TU MAGIA: La imagen con opacidad */
+#grid-accesorios::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Tu imagen del universo */
+    background-image: url('imagen/universo.webp'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto elegante */
+    
+    /* 👉 TU OPACIDAD AQUÍ, SOLO PARA EL FONDO */
+    opacity: 0.13; /* ¡Poquitito, como querías! Se ve tenue y elegante */
+    
+    z-index: 1; /* Se va atrás de todo */
+}
+
+/* 🖼️ LAS TARJETAS: Se ponen arriba y se ven claras */
+.accesorio-card {
+    position: relative;
+    z-index: 2; /* ¡Arriba del fondo! */
+    
+    /* Estilos para que se vean lindas y con tu estilo */
+    background: rgba(255, 255, 255, 0.9); /* Un fondo blanco casi opaco para resaltar */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.2); /* Sombra de tu color azul */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.accesorio-card:hover {
+    transform: translateY(-8px); /* Que se levante al pasar el ratón */
+    box-shadow: 0 8px 25px rgba(0, 86, 179, 0.3);
+}
+.btn-regresar-flotante {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    /* Mantiene las letras en vertical sin cambiar el HTML */
+    writing-mode: vertical-lr;
+
+    position: fixed;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    z-index: 1000;
+
+    /* Fondo translúcido sutil para no robar atención */
+    background: rgba(17, 20, 26, 0.4);
+    backdrop-filter: blur(4px);
+    
+    padding: 25px 8px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: #00f3ff;
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+
+    /* Resplandor azul cian elegante */
+    border: 1px solid rgba(0, 243, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3), 
+                inset 0 0 8px rgba(0, 243, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Ajuste del icono dentro de tu estructura */
+.btn-regresar-flotante i {
+    transform: rotate(90deg); /* Gira la flecha para que apunte hacia la pantalla */
+    margin-bottom: 4px;
+}
+
+.btn-regresar-flotante:hover {
+    color: #ffffff;
+    background: rgba(0, 86, 179, 0.7);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.7);
+}
+

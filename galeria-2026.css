@@ -1,0 +1,978 @@
+
+/* ==============================================
+   1. ESTILOS GLOBALES Y RESET
+   ============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    background-color: #000;
+}
+
+/* ==============================================
+   NAVEGACIÓN PRINCIPAL
+   ============================================== */
+.navegacion-principal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 40px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 195, 255, 0.2);
+    z-index: 999999; /* Siempre arriba */
+}
+
+.navegacion-principal a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navegacion-principal a:hover {
+    color: #00c3ff;
+    text-shadow: 0 0 8px rgba(0, 195, 255, 0.6);
+}
+
+.btn-cotizar-ahora {
+    margin-left: auto;
+    background: #00c3ff;
+    color: #000 !important;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.btn-cotizar-ahora:hover {
+    background: #00f2fe;
+    transform: scale(1.05);
+}
+
+/* ==============================================
+   2. ESCENARIO PRINCIPAL (EL VISOR)
+   ============================================== */
+.seccion-galeria-jireh-vr {
+    width: 100%;
+    height: 100vh;
+    margin-top: 60px; /* Deja espacio al menú superior */
+    position: relative;
+    overflow: hidden;
+}
+
+#escena-showroom-3d {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    perspective: 2500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* Fondo del Universo */
+.fondo-universo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('imagen/universo.webp');
+    background-size: cover;
+    background-position: center;  /* <-- ESTA LÍNEA ES LA QUE CAMBIAMOS */
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+/* Contenedor del Mundo 3D */
+.mundo-3d-jireh {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 5;
+}
+
+/* Capa de la Cueva / Viñeta oscura */
+.borde-cueva {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none; 
+    background: radial-gradient(
+        circle, 
+        transparent 40%, 
+        rgba(0, 0, 0, 0.6) 75%, 
+        black 100%
+    );
+}
+
+/* ==============================================
+   3. CONTENEDORES 3D (EL EJE DEL MUNDO)
+   ============================================== */
+
+/* Contenedor de agua y distorsión */
+/*.contenedor-agua-vr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform: translateY(280px); /* <-- ESTE NÚMERO LO CAMBIAMOS */
+  /*  opacity: 1;
+}
+
+
+.capa-distorsion-agua {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 195, 255, 0.02);
+    filter: blur(20px);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* ==============================================
+   4. ELEMENTOS (FOTOS Y REFLEJOS)
+   ============================================== */
+/*.elemento-carrusel
+ {
+    position: absolute;
+    width: 320px; 
+    height: 420px;
+    
+    /* CENTRADO VITAL */
+  /*  left: -160px; 
+    top: -210px; 
+    
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    backface-visibility: hidden;
+    transform-origin: center center;
+}
+
+.elemento-carrusel img
+ {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* --- ESTILO METÁLICO AZUL PARA LAS FOTOS --- */
+/*.elemento-carrusel {
+    border: 3px solid #00c3ff;
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.6), 
+                inset 0 0 10px rgba(0, 195, 255, 0.4);
+    border-radius: 12px;
+    
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+
+/* Efecto Hover */
+/*.elemento-carrusel:hover {
+    filter: brightness(1.2) contrast(1.1);
+    z-index: 10000 !important;
+    border-color: #00f2fe;
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.9),
+                inset 0 0 15px rgba(0, 242, 254, 0.6);
+    transform: scale(1.05);
+}
+
+/* --- REFLEJO DE AGUA --- */
+
+/* ===== SECCIÓN 1: FONDO UNIVERSO ===== */
+.fondo-universo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:  url('imagen/universo.webp');
+    background-size: cover;
+    /* 👇 NUEVA POSICIÓN: Baja la imagen 30% para que la Tierra quede bien */
+    background-position: center 30%; 
+    background-attachment: fixed;
+    z-index: 1;
+}
+
+/* ===== SECCIÓN 2: CONTENEDOR DE REFLEJOS ===== */
+/*.contenedor-agua-vr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* 👇 SUBE LOS REFLEJOS: de 280 a 200 */
+/*    transform: translateY(200px); 
+    opacity: 1;
+}
+
+/* ===== SECCIÓN 3: ESTILO DEL REFLEJO ===== */
+
+/* ==============================================
+   5. EFECTOS DECORATIVOS (LUCES)
+   ============================================== */
+/*.esferas-luz {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.esfera {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,195,255,0.2), transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    animation: flotar 8s infinite ease-in-out;
+}
+
+.e1 { top: 10%; left: 10%; animation-delay: 0s; }
+.e2 { top: 20%; right: 15%; animation-delay: 2s; }
+/*.e3 { bottom: 15%; left: 20%; animation-delay: 4s; }
+.e4 { bottom: 30%; right: 10%; animation-delay: 6s; }
+*/
+@keyframes flotar {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-30px) scale(1.1); }
+}
+
+/* ==============================================
+   6. BOTONES DE CATEGORÍA - ESTILO NEÓN
+   ============================================== */
+.contenedor-botones-filtros {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(0, 195, 255, 0.08);
+    padding: 10px 20px;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 195, 255, 0.3);
+}
+
+/* Estilo base de los botones */
+.btn-filtro-2026 {
+    background: rgba(0, 217, 255, 0.05);
+    color: #00d9ff;
+    border: 2px solid #00d9ff;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    
+    box-shadow: 
+        0 0 15px rgba(0, 217, 255, 0.5), 
+        inset 0 0 10px rgba(0, 217, 255, 0.2);
+    
+    text-shadow: 0 0 8px rgba(0, 217, 255, 0.6);
+    animation: pulsoNeon 3s infinite ease-in-out;
+}
+
+/* Hover efecto */
+.btn-filtro-2026:hover {
+    background: #00d9ff;
+    color: #000000;
+    transform: scale(1.1) translateY(-3px);
+    
+    box-shadow: 
+        0 0 25px rgba(0, 217, 255, 0.8), 
+        0 0 45px rgba(0, 217, 255, 0.5);
+}
+
+/* Botón especial (Volver) en Dorado */
+.btn-especial {
+    background: rgba(255, 215, 0, 0.1); 
+    color: #ffd700;
+    border: 2px solid #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+    animation: pulsoDorado 3s infinite ease-in-out;
+}
+
+.btn-especial:hover {
+    background: #ffd700;
+    color: #000000;
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+}
+
+/* Animaciones de luz */
+@keyframes pulsoNeon {
+    0% { box-shadow: 0 0 15px rgba(0, 217, 255, 0.5); }
+    50% { box-shadow: 0 0 25px rgba(0, 217, 255, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(0, 217, 255, 0.5); }
+}
+
+@keyframes pulsoDorado {
+    0% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.7); }
+    100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+}
+
+/* ==============================================
+   7. GALERÍA EN CUADRÍCULA (AL SELECCIONAR)
+   ============================================== */
+.seccion-grid-oculta {
+    display: none;
+    min-height: 100vh;
+    background: #0a0a0a;
+    padding: 120px 40px 60px;
+}
+
+.seccion-grid-oculta.mostrar {
+    display: block;
+}
+
+.grid-proyectos-2026 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.grid-proyectos-2026 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.grid-proyectos-2026 img:hover {
+    border-color: #00c3ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(0,195,255,0.4);
+}
+
+/* ==============================================
+   8. MODAL Y ELEMENTOS GENERALES
+   ============================================== */
+#fotoModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999999;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+}
+
+#fotoModal.mostrar {
+    display: flex;
+}
+
+#imgFull {
+    max-width: 90%;
+    max-height: 85%;
+    border-radius: 8px;
+    box-shadow: 0 0 50px rgba(255,255,255,0.1);
+}
+
+.cerrar-modal {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.cerrar-modal:hover {
+    color: #00c3ff;
+}
+
+/*.btn-whatsapp-fijo {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999999;
+}
+
+.btn-whatsapp-fijo img {
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.btn-whatsapp-fijo img:hover {
+    transform: scale(1.15);
+}
+
+/* ==============================================
+   PIE DE PÁGINA
+   ============================================== */
+footer {
+    background: #000;
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    border-top: 1px solid rgba(0,195,255,0.1);
+    position: relative;
+    z-index: 10;
+}
+/*
+#btnVolverArriba {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #00c3ff;
+    color: #000;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+/* ===== SECCIÓN: REFLEJO DE AGUA (CORREGIDO Y MÁS BRILLO) ===== */
+.elemento-reflejo {
+    position: absolute;
+    width: 320px;
+    height: 420px;
+    left: -160px;
+    top: -210px;
+    
+    pointer-events: none;
+    /* 🔴 MÁS VISIBLE: Antes estaba en 0.45 o 0.5, AHORA EN 0.9 CASI IGUAL A LA FOTO */
+    opacity: 0.9; 
+    border: 3px solid rgba(0, 195, 255, 0.4); 
+    box-shadow: none; 
+
+    /* 🔴 MÁS BRILLO Y MENOS BORROSO: Antes estaba oscuro y borroso, AHORA CLARO */
+    filter: blur(1px) brightness(1.1) saturate(1.8); 
+    
+    /* Desvanecimiento suave */
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 80%);
+    
+    /* 🔴 CLAVE: Volteamos bien la imagen y CORREGIMOS EL TEXTO AL REVÉS */
+    transform: scaleY(-1) scaleX(-1); 
+    transform-origin: center center;
+}
+/*.contenedor-agua-vr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* 🔴 ANTES TENÍAS 280px o 200px -> AHORA PON 140px para que estén pegaditos */
+  /*  transform: translateY(140px); 
+    opacity: 1;
+}*/
+.fondo-universo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('imagen/universo.webp');
+    background-size: cover;
+    /* 🔴 ESTE ES EL NÚMERO CLAVE: 20% sube la imagen, 50% es centro. 
+       Ponlo en 22% para que la Tierra quede un poquito abajo de la mitad */
+    background-position: center 22%; 
+    background-attachment: fixed;
+    z-index: 1;
+}
+.elemento-carrusel {
+    position: absolute;
+    width: 320px;
+    height: 420px;
+    left: -160px;
+    top: -210px;
+    
+    /* 🔴 AQUÍ AGREGAMOS scaleX(-1) PARA QUE EL TEXTO SE LEA CORRECTO */
+    transform: scaleX(-1); 
+    
+    pointer-events: auto;
+    cursor: pointer;
+    transition: transform 0.5s ease, filter 0.5s ease;
+    backface-visibility: hidden;
+    transform-origin: center center;
+
+    border: 3px solid #00c3ff;
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.6), 
+                inset 0 0 10px rgba(0, 195, 255, 0.4);
+    border-radius: 12px;
+    
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+}
+/* ==============================================
+   7. GALERÍA EN CUADRÍCULA (AHORA CON ESTILO UNIVERSO - GRUPO JIREH)
+   ============================================== */
+.seccion-grid-oculta {
+    display: none;
+    min-height: 100vh;
+    /* 🔴 ELIMINAMOS EL NEGRO PLANO Y PONEMOS NUESTRO FONDO */
+    background-image: 
+        linear-gradient(rgba(0, 5, 15, 0.75), rgba(0, 20, 35, 0.65)), /* Degradado azul oscuro suave */
+        url('imagen/universo.webp'); /* MISMA IMAGEN DE FONDO */
+    background-size: cover;
+    background-position: center 22%; /* 👈 MISMA POSICIÓN QUE ARRIBA, COINCIDE PERFECTO */
+    background-attachment: fixed; /* 👈 FIJO, IGUAL QUE EL RESTO */
+    padding: 120px 40px 60px;
+    position: relative;
+}
+
+/* ✨ CAPA DE DISTORSIÓN SUAVE PARA QUE NO SE VEA TAN FUERTE */
+.seccion-grid-oculta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top, rgba(0, 195, 255, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.grid-proyectos-2026 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; /* Para que las fotos queden encima del fondo */
+}
+
+.grid-proyectos-2026 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    /* 🔴 MISMOS ESTILOS AZULES METÁLICOS DEL RESTO DEL SITIO */
+    border: 2px solid rgba(0, 195, 255, 0.4);
+    box-shadow: 0 0 12px rgba(0, 195, 255, 0.2), 
+                inset 0 0 8px rgba(0, 195, 255, 0.1);
+    transition: all 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.grid-proyectos-2026 img:hover {
+    border-color: #00c3ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+    filter: brightness(1.1);
+}
+/* ==============================================
+   7. GALERÍA EN CUADRÍCULA - FONDO DE ARRIBA HACIA ABAJO
+   ============================================== */
+.seccion-grid-oculta {
+    display: none;
+    min-height: 100vh;
+    background-image: 
+        linear-gradient(rgba(0, 5, 15, 0.75), rgba(0, 20, 35, 0.65)),
+        url('imagen/universo.webp');
+    
+    background-size: cover; 
+    /* 👇 ESTE ES EL CAMBIO CLAVE: "top" significa EMPIEZA ARRIBA, baja hasta abajo */
+    background-position: top center; 
+    /* 👆 Así se ve todo de arriba para abajo, y lo que no quepa se recorta abajo, tal cual quieres */
+
+    background-attachment: fixed;
+    padding: 120px 40px 60px;
+    position: relative;
+}
+
+/* Capa de luz suave */
+.seccion-grid-oculta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top, rgba(0, 195, 255, 0.08), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.grid-proyectos-2026 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.grid-proyectos-2026 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(0, 195, 255, 0.4);
+    box-shadow: 0 0 12px rgba(0, 195, 255, 0.2), 
+                inset 0 0 8px rgba(0, 195, 255, 0.1);
+    transition: all 0.3s ease;
+    filter: brightness(0.9);
+}
+
+.grid-proyectos-2026 img:hover {
+    border-color: #00c3ff;
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+    filter: brightness(1.1);
+}
+/* ==============================================
+   📅 CORRECCIONES ESPECIALES PARA CELULAR / MÓVIL
+   ============================================== */
+
+/* SOLO CUANDO LA PANTALLA ES MENOR A 768px (CELULARES) */
+@media (max-width: 768px) {
+
+    /* 🔹 1. QUITAMOS EL BOTÓN REPETIDO */
+    #btn-regresar-carrusel {
+        display: none !important;
+    }
+
+    /* 🔹 2. ARREGLAMOS EL MENÚ DE ARRIBA: Más pequeño y centrado */
+    .navegacion-principal {
+        padding: 10px 15px !important;
+        gap: 10px !important;
+        justify-content: center !important;
+        font-size: 14px !important;
+    }
+
+    .btn-cotizar-ahora {
+        padding: 6px 12px !important;
+        font-size: 12px !important;
+    }
+
+    /* 🔹 3. BOTONES DE CATEGORÍA: Que no se salgan, quepan bien y sean cómodos 
+    .contenedor-botones-filtros {
+        width: 95% !important;
+        top: 60px !important;
+        padding: 8px 10px !important;
+        gap: 8px !important;
+        border-radius: 20px !important;
+    }
+
+    .btn-filtro-2026, .btn-especial {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+    }
+
+    /* 🔹 4. ESCENA PRINCIPAL: Acomodamos tamaño para que no se corten fotos */
+    .seccion-galeria-jireh-vr {
+        height: 85vh !important; /* Un poquito más chico para que quepa todo */
+        margin-top: 50px !important;
+    }
+
+    /* 🔹 5. FOTOS: Tamaño correcto Y TEXTO BIEN PUESTO */
+    .elemento-carrusel {
+        width: 220px !important; /* Más chicas para celular */
+        height: 300px !important;
+        left: -110px !important; /* Centramos el nuevo tamaño */
+        top: -150px !important;
+        transform: scaleX(-1) !important; /* 👈 CLAVE: Texto al derecho */
+    }
+
+    .elemento-carrusel img {
+        transform: scaleX(-1) !important; /* Doble corrección para que se vea perfecto */
+    }
+
+    /* 🔹 6. REFLEJOS: Tamaño igual a las fotos y texto bien */
+    .elemento-reflejo {
+        width: 220px !important;
+        height: 300px !important;
+        left: -110px !important;
+        top: -150px !important;
+        transform: scaleY(-1) scaleX(-1) !important; /* 👈 Texto al derecho */
+    }
+
+    /* 🔹 7. CUADRÍCULA: Fotos más chicas y fondo bien puesto */
+    .seccion-grid-oculta {
+        padding: 90px 15px 30px !important;
+        background-position: top center !important; /* Mantiene tu estilo de arriba hacia abajo */
+    }
+
+    .grid-proyectos-2026 {
+        gap: 15px !important;
+    }
+
+    .grid-proyectos-2026 img {
+        height: 180px !important; /* Más pequeñas en celular */
+    }
+
+    /* 🔹 8. ARREGLAMOS EL TEXTO VOLTEADO DE LAS IMÁGENES (EL ERROR PRINCIPAL) */
+    .elemento-carrusel, .elemento-reflejo {
+        transform-origin: center center !important;
+    }
+}
+/* ==========================================================================
+   🎯 ESTILOS DEL MENÚ DESPLEGABLE PURO - EN LA GALERÍA
+   ========================================================================== */
+.jireh-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.jireh-btn-cotizador {
+    background-color: #00d9ff;
+    color: #121212;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.jireh-btn-cotizador:hover {
+    background-color: #00bcd4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 217, 255, 0.4);
+}
+
+.jireh-flecha {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.jireh-dropdown-menu {
+    position: absolute;
+    top: 110%;
+    right: 0; /* Lo alineamos a la derecha para que no se desborde de la barra */
+    z-index: 1000;
+    display: none;
+    min-width: 260px;
+    padding: 8px;
+    list-style: none;
+    background-color: rgba(26, 29, 36, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.jireh-dropdown:hover .jireh-dropdown-menu {
+    display: block;
+}
+
+.jireh-dropdown:hover .jireh-flecha {
+    transform: rotate(180deg);
+}
+
+.jireh-menu-titulo {
+    color: #00d9ff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 6px 10px;
+}
+
+.jireh-divisor {
+    height: 1px;
+    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.jireh-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.jireh-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    padding-left: 14px;
+}
+
+.jireh-item-combinado {
+    color: #00d9ff;
+    background-color: rgba(0, 217, 255, 0.05);
+    font-weight: 600;
+}
+
+/* 🟢 ESTILO ADICIONAL PARA TU BOTÓN DE WHATSAPP FLOTANTE */
+.btn-whatsapp-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    width: 60px;
+    height: 60px;
+    transition: transform 0.3s ease;
+}
+
+.btn-whatsapp-flotante img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.btn-whatsapp-flotante:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+/* Estilos para la Cuadrícula */
+#contenedor-cuadricula {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 90%;
+    margin: auto;
+}
+
+.item-grid {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.item-grid:hover {
+    transform: translateY(-5px);
+}
+
+.item-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-grid p {
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+}
+/* ===================================================
+   🟢 BOTÓN FLOTANTE DE WHATSAPP (Fijo en la esquina)
+   =================================================== */
+.boton-whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999; /* Asegura que flote por encima de las 150 fotos y del carrusel */
+  transition: transform 0.3s ease;
+}
+
+.boton-whatsapp img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Sutil sombra para dar volumen sobre fondos oscuros o claros */
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4)); 
+}
+
+/* Efecto al pasar el mouse por el botón de WhatsApp */
+.boton-whatsapp:hover {
+  transform: scale(1.1); /* Se agranda un poquito de forma divertida */
+}
+
+/* ===================================================
+   🖼️ CUADRÍCULA DE FOTOS (Adaptada a tus clases reales)
+   =================================================== */
+
+/* Tu contenedor real según tu HTML */
+.grid-proyectos-2026 {
+  display: grid;
+  /* Acomoda columnas automáticas responsivas de mínimo 240px */
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 30px 15px; /* 15px a los lados evita que en celulares toque las orillas */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Asegura un tamaño idéntico para tus 150 fotos sin que se deformen */
+.grid-proyectos-2026 img {
+  width: 100%;
+  height: 240px;       /* Altura simétrica ideal para fachadas y canceles */
+  object-fit: cover;   /* Recorta la foto como encuadre profesional sin estirarla */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 150, 255, 0.4); /* Resplandor neón azul */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+/* Hover de tus imágenes */
+.grid-proyectos-2026 img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 200, 255, 0.7); /* Eleva el brillo azul */
+}
+
+/* ===================================================
+   ✨ BOTONES DE FILTRO ESTILO ESPACIAL (Tus clases)
+   =================================================== */
+.btn-filtro-2026 {
+  background: linear-gradient(90deg, #007bff, #00bfff);
+  border: none;
+  color: #ffffff;
+  padding: 10px 18px;
+  margin: 6px;
+  border-radius: 20px; /* Bordes ovalados tipo píldora como tus capturas */
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-filtro-2026:hover {
+  transform: translateY(-2px); /* Eleva el botón sutilmente */
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.6); /* Brillo intenso */
+}

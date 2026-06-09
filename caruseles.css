@@ -1,0 +1,222 @@
+/**
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ * 🏢 PROYECTO: GRUPO JIREH
+ * 📄 ARCHIVO: estilos-carruseles.css
+ * 🎯 FUNCIÓN: Estructura base optimizada y limpia
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ */
+
+/* ---------- 🔄 RESETEO Y BASE ---------- */
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+     font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+     scroll-behavior: smooth;
+} 
+
+/* Al juntar 'section', el '#id' y la '.clase', esta regla se vuelve indestructible para el navegador */
+section#galeria.seccion-galeria {
+    background: linear-gradient(
+        135deg, 
+        rgba(0, 68, 255, 0.08) 0%,     
+        rgba(244, 246, 249, 0.95) 50%,   
+        rgba(0, 68, 255, 0.03) 100%    
+    ) !important;
+    
+    padding: 60px 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+/* ==========================================================================
+   🛡️ PROTECTOR BLANCO: La armadura que cuida los colores de tus fotos
+   ========================================================================== */
+.card-galeria {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    background: #ffffff; /* 🔑 Obliga a mantener el fondo blanco puro bajo el carrusel */
+    padding: 40px 30px;  /* Más aire arriba/abajo para que el carrusel 3D gire cómodo */
+    border-radius: 12px;
+    /* Sombra con un levísimo tinte azul marino que hace juego con el nuevo fondo */
+    box-shadow: 0 15px 35px rgba(0, 44, 150, 0.04); 
+}
+
+/* ==============================================
+   🎠 CARRUSEL 3D: PROYECTOS DESTACADOS
+============================================== */
+/* ✅ CONTENEDOR ANCHOR: Blindamos el contenedor inyectado por JS */
+.carrusel-3d-contenedor {
+    box-sizing: border-box !important;
+    padding: 0 !important; /* Resetea el padding del efecto hoja que lo deforma */
+}
+
+.tarjeta-3d {
+    /* 🔑 CLAVE: Hace que la rotación y el cambio de tamaño calculados por JS sean ultra suaves */
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+    box-sizing: border-box !important;
+    padding: 0 !important; /* Evita que las tarjetas de fotos se inflen */
+    background: #000000 !important; /* Obliga a la tarjeta a retener su fondo negro de gala */
+}
+
+/* Forzamos que las imágenes de los proyectos cubran todo el espacio de su tarjeta */
+.tarjeta-3d img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+/* ⭐ Resaltado extra por CSS cuando la tarjeta está justo al frente */
+.tarjeta-3d.destacada {
+    z-index: 1000 !important; /* Evita cualquier error de encimado con las de atrás */
+}
+
+/* ==============================================
+   🎠 CARRUSEL SIMPLE: GALERÍA HORIZONTAL
+============================================== */
+#carrusel-simple {
+    /* 🔑 CLAVE: Mantiene el comportamiento de barra deslizante nativa */
+    scrollbar-width: none; /* Oculta barra en Firefox */
+    padding: 20px 0 !important; /* Margen interno controlado para que no use el del efecto hoja */
+}
+
+#carrusel-simple::-webkit-scrollbar {
+    display: none; /* Oculta barra en Chrome/Safari para que se vea más limpio */
+}
+
+.item-simple {
+    /* Transición suave para el efecto de agrandado al pasar el mouse */
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.4s ease;
+    cursor: pointer;
+    box-sizing: border-box !important;
+    padding: 0 !important; /* Desactiva paddings raros en las miniaturas */
+}
+
+.item-simple img {
+    display: block;
+}
+
+.item-simple:hover {
+    transform: scale(1.03);
+}
+
+/* ==============================================
+   🎯 FILTROS Y BOTONES DE NAVEGACIÓN
+============================================== */
+.filtros-galeria {
+    text-align: center;
+    margin: 20px 0 30px 0;
+}
+
+.btn-filtro {
+    padding: 10px 20px;
+    border: none;
+    background: #eee;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-filtro.active {
+    background: #00d9ff;
+    color: white;
+}
+
+/* 📜 MENÚ SEGUIDOR FIJO (Animación de entrada al bajar) */
+#menuSeguidor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-100%); 
+    transition: transform 0.3s ease-in-out;
+    z-index: 9999;
+}
+
+#menuSeguidor.activo {
+    transform: translateY(0); 
+}
+
+/* ==============================================
+   🖼️ SECCIÓN: CUADRÍCULA DE LA SÚPER GALERÍA
+============================================== */
+.galeria-cuadricula {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  padding: 30px 15px; 
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.galeria-cuadricula img {
+  width: 100%;
+  height: 240px;       /* 💡 Altura fija para la cuadrícula uniforme */
+  object-fit: cover;   /* 💡 Corta y encuadra la foto perfectamente */
+  border-radius: 10px;
+  box-shadow: 0 -10px 20px rgba(0, 150, 255, 0.4); /* Corregido error de sintaxis en sombra (-10 a -10px) */
+  transition: transform 0.4s ease, box-shadow 0.4s ease; 
+  cursor: pointer;
+}
+
+.galeria-cuadricula img:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 -10px 30px rgba(0, 200, 255, 0.7); 
+}
+
+/* ==================================================
+   🎨 EFECTO: "ENCIMA DE HOJA" / ESCALÓN ELEGANTE
+   ================================================== */
+/* 🔹 APLICAMOS EL EFECTO: Se excluyen las clases del carrusel 3D para evitar deformaciones */
+.carrusel-contenedor:not(.carrusel-3d-contenedor), 
+.tarjeta:not(.tarjeta-3d), 
+.card, 
+.testimonio, 
+.seccion, 
+.contenedor-seccion, 
+.lo-que-dicen, 
+.experiencias, 
+.servicios, 
+.ventajas {
+
+    /* ✅ FONDO: Blanco TRASLÚCIDO */
+    background-color: rgba(255, 255, 255, 0.78) !important;
+
+    /* ✅ BORDES REDONDEADOS */
+    border-radius: 12px !important;
+
+    /* ✅ EL SECRETO: SOMBRA SUAVE = ESCALÓN */
+    box-shadow: 0 6px 16px rgba(0, 51, 122, 0.08), 
+                0 2px 4px rgba(0, 51, 122, 0.04) !important;
+
+    /* ✅ SEPARACIÓN */
+    margin: 18px auto !important; 
+    padding: 20px !important; 
+
+    /* ✅ BORDE FINITO RECOMANEDADO */
+    border: 1px solid rgba(255, 255, 255, 0.9) !important;
+
+    /* ✅ EFECTO VIDRIO */
+    backdrop-filter: blur(3px) !important;
+}
+
+/* 🔹 SI LOS COMPONENTES TIENEN IMÁGENES INTERNAS (Excluyendo el carrusel 3D) */
+.carrusel:not(.carrusel-3d-contenedor) img, 
+.carrusel-item img {
+    border-radius: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* 🔹 ASEGURAMOS QUE EL PIE DE PÁGINA NO TENGA ESTE EFECTO */
+.footer-jireh {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+}

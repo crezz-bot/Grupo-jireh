@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería 2026 - Grupo Jireh</title>
+    <link rel="stylesheet" href="galeria-2026.css">
+</head>
+
+<body>
+
+    <nav class="navegacion-principal">
+        <a href="index.html">Inicio</a>
+        <a href="galeria-2026.html">Galería 2026</a>
+        <a href="productos.html">Herrajes</a>
+
+        <div class="jireh-dropdown">
+            <button class="jireh-btn-cotizador shadow">
+                <span>🖩 Ir al Cotizador</span>
+                <span class="jireh-flecha">▼</span>
+            </button>
+            <ul class="jireh-dropdown-menu">
+                <li class="jireh-menu-titulo">¿Qué deseas presupuestar?</li>
+                <li class="jireh-divisor"></li>
+                <li>
+                    <a class="jireh-menu-item" href="Cotizador-Grupo-Jireh.html?seccion=aluminio">
+                        <span class="jireh-icono">🪟</span> Solo Estructura de Aluminio
+                    </a>
+                </li>
+                <li>
+                    <a class="jireh-menu-item" href="Cotizador-Grupo-Jireh.html?seccion=cristal">
+                        <span class="jireh-icono">💎</span> Cristal Templado Estructural
+                    </a>
+                </li>
+                <li>
+                    <a class="jireh-menu-item" href="Cotizador-Grupo-Jireh.html?seccion=tablaroca">
+                        <span class="jireh-icono">🧱</span> Trabajos de Tablaroca
+                    </a>
+                </li>
+                <li class="jireh-divisor"></li>
+                <li>
+                    <a class="jireh-menu-item jireh-item-combinado" href="Cotizador-Grupo-Jireh.html?seccion=combinado">
+                        <span class="jireh-icono">✨</span> Proyecto Combinado <small>(Aluminio + Vidrio)</small>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="contenedor-botones-filtros">
+        <button class="btn-filtro-2026" data-categoria="todos">🌟 Todas</button>
+        <button class="btn-filtro-2026" data-categoria="fachadas-recidenciales">🏠 Fachadas Residenciales</button>
+        <button class="btn-filtro-2026" data-categoria="fachadas-comerciales">🏢 Fachadas Comerciales</button>
+        <button class="btn-filtro-2026" data-categoria="puertas-aluminio">🚪 Puertas</button>
+        <button class="btn-filtro-2026" data-categoria="ventanas-modernas">🪟 Ventanas</button>
+        <button class="btn-filtro-2026" data-categoria="banos-lujo">🚿 Baños</button>
+        <button class="btn-filtro-2026" data-categoria="escaleras-barandales">🪜 Escaleras</button>
+        <button class="btn-filtro-2026" data-categoria="tablaroca">🏗️ Tablaroca</button>
+        <button class="btn-filtro-2026" data-categoria="herrajes-grupo-jireh">💎 Herrajes</button>
+        <button class="btn-filtro-2026" data-categoria="domos">domos</button>
+        <button id="btn-regresar-carrusel" class="btn-especial">🔄 Volver al Carrusel</button>
+    </div>
+
+    <section id="contenedor-escena-inmersiva" class="seccion-galeria-jireh-vr">
+        <div id="escena-showroom" class="grupo-visual">
+            <div class="fondo-universo"></div>
+
+            <div class="mundo-3D-jireh">
+                <div id="vr-carrusel-paneles"></div>
+                <div id="vr-carrusel-reflejos"></div>
+            </div>
+        </div>
+    </section>
+
+    <div id="galeria-cuadratica" class="seccion-grid-oculta">
+        <div id="contenedor-grid" class="grid-proyectos-2026"> </div>
+    </div>
+
+    <div id="fotoModal" class="modal-jireh">
+        <span class="cerrar-modal">&times;</span>
+        <img id="imgFull" class="modal-contenido">
+    </div>
+
+
+
+    <script src="js/datos-galeria.js"></script>
+    <!--  <script src="js/app-2galeria.js"></script>   -->
+    <script src="js/app-galeria.js"></script>
+    <a href="https://wa.me/52XXXXXXXXXX?text=Hola%20Grupo%20Jireh,%20me%20interesa%20una%20cotizaci%C3%B3n"
+        class="boton-whatsapp" target="_blank">
+        <img src="imagen/icono-grupo-jireh/mi-icono-whastapp.webp" alt="WhatsApp">
+    </a>
+
+
+    <footer>
+        <button id="btnVolverArriba" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
+        <p>&copy; 2026 Grupo Jireh. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
